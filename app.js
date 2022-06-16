@@ -8,8 +8,6 @@ import currCodeAndCountry from './currenciesCodeCountry.js'
         )
     .then(resp => resp.json())
     .then(data => {
-
-        console.log(data[0].rates);
         currenciesApiData = data[0].rates
             connectData()
             console.log(currFullData);
@@ -17,15 +15,13 @@ import currCodeAndCountry from './currenciesCodeCountry.js'
 
 
 function connectData() {
-
     currenciesApiData.map( el =>{
         currCodeAndCountry.forEach((elSM, index) => {
-            // el.code == elSM.code ? console.log('hi') : console.log('no');
             if(el.code == elSM.code) {
                 currFullData = currenciesApiData
-                currFullData[index].country = currCodeAndCountry[index].country
+                currFullData[index].country = currCodeAndCountry[index].country.toLowerCase()
+                currFullData[index].src = `https://countryflagsapi.com/png/${currFullData[index].country}`
             }
-
         })
     })
 }
