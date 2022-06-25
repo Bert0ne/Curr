@@ -13,7 +13,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     align-content: center;
 }
@@ -27,14 +27,21 @@ body {
     align-items: center;
     justify-content: center;
 
+    margin-top: 50px;
 
-    margin: 20px;
 }
 
 .title h1, .title h3 {
     margin: 5px 5px;
 }
+.title h1 {
+    font-size: 3rem;
+}
 
+.title h3 {
+    font-size: 1.4rem;
+    margin: 50px 0 60px;
+}
 /*       CALC        */
 
 .calc {
@@ -68,7 +75,7 @@ body {
 
 .country_choose {
     width: 190px;
-    height: 70px;
+    height: 80px;
     border-radius: 5px 0 0 5px;
     outline: none;
     border: 1px solid rgba(89, 131, 252, 1);
@@ -95,9 +102,8 @@ body {
 }
 
 input.inputs {
-
     width: 250px;
-    height: 70px;
+    height: 80px;
     border-radius: 0 5px 5px 0;
     outline: none;
 
@@ -106,6 +112,23 @@ input.inputs {
     font-size: 1.5rem;
     color: white;
     text-align: right;
+    padding-right: 10px;
+    font-weight: 600;
+
+    position: relative;
+}
+.top_input {
+    position: relative;
+}
+.top_input::before {
+    content: "Mam";
+    color: white;
+    height: 10px;
+    width: 10px;
+    top: 8px;
+    left: 50%;
+    font-size: 1rem;
+    position: absolute;
 }
 
 /*     BOTTOM RATES    */
@@ -114,7 +137,7 @@ input.inputs {
 .bottom_rates {
     width: 70%;
     height: auto;
-    margin-top: 30px;
+    margin-top: 70px;
 
     display: flex;
     flex-direction: row;
