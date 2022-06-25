@@ -1,0 +1,148 @@
+*, *::after,*::before {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgba(89, 131, 252, 1);
+    background-image: linear-gradient(90deg, rgba(89, 131, 252, 1) 0%, rgba(41, 53, 86, 1) 100%);
+    color: white;
+    font-size: 62,5%;
+
+    font-family: 'Lato', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+
+/*      TITLE       */
+.title {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+    margin: 20px;
+}
+
+.title h1, .title h3 {
+    margin: 5px 5px;
+}
+
+/*       CALC        */
+
+.calc {
+    width: 100%;
+    height: auto;
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+}
+
+.calc_inputs_container {
+    width: clamp(200px, 600px, 800px);
+    height: 400px;
+    border-radius: 5px;
+    border: 1px solid rgba(89, 131, 252, 1);
+
+    background-color: rgba(41, 53, 86, .2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.inputs_calc {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.country_choose {
+    width: 190px;
+    height: 70px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    border: 1px solid rgba(89, 131, 252, 1);
+    border-right: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.country_choose--flag {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.inputIMG {
+    width: 60px;
+    padding-right: 5px;
+}
+
+input.inputs {
+
+    width: 250px;
+    height: 70px;
+    border-radius: 0 5px 5px 0;
+    outline: none;
+
+    border: 1px solid rgba(89, 131, 252, 1);
+    background-color: transparent;
+    font-size: 1.5rem;
+    color: white;
+    text-align: right;
+}
+
+/*     BOTTOM RATES    */
+
+
+.bottom_rates {
+    width: 70%;
+    height: auto;
+    margin-top: 30px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.bottom_rates img {
+    width: 70px;
+}
+
+.single__rates {
+    width: 120px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.single__rates--country {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+    align-items: center;
+}
+
+
+
+
+

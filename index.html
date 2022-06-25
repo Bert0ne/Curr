@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/079ca7d04d.js" crossorigin="anonymous"></script>
+
     <meta name="theme-color" content="#343d46">
     <link rel="stylesheet" href="./style.css">
     <script defer type="module" src="./app.js"></script>
@@ -11,7 +16,65 @@
 </head>
 <body>
 
+    <section class="title">
+        <h1 class="">Kalkulator walutowy</h1>
+        <h3 class="">Wpisz kwotę w kalkulator walutowy i sprawdź swój przelicznik</h3>
+    </section>
     
-    
+    <section class="calc">
+        <div class="calc_inputs_container">
+            <div class="inputs_calc top_input">
+                <div class="country_choose">
+                    <div class="country_choose--flag">
+                        <img class="inputIMG" src="https://countryflagsapi.com/png/usa" alt="usa flag">
+                        <h3>USD</h3>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+
+                <input type="text" id="top_input" class="inputs input_top">
+                <!-- <label for="top_input">Mam</label> -->
+            </div>
+
+            <div class="reverse_button">
+                
+            </div>
+
+            <div class="bottom_input"></div>
+
+            <button class="btn_check">Sprawdź Kurs</button>
+
+        </div>
+
+
+    </section>
+
+    <section class="bottom_rates">
+        
+        <div class="single__rates">
+            <img src="https://countryflagsapi.com/png/europe" alt="Europe flag">
+            <div class="single__rates--country">
+                <h3>EUR</h3>
+                <p>4,69</p>
+            </div>
+        </div>
+
+        <div class="single__rates">
+            <img src="https://countryflagsapi.com/png/usa" alt="usa flag">
+            <div class="single__rates--country">
+                <h3>USD</h3>
+                <p>4,48</p>
+            </div>
+        </div>
+
+        <div class="single__rates">
+            <img src="https://countryflagsapi.com/png/gb" alt="Europe flag">
+            <div class="single__rates--country">
+                <h3>GPB</h3>
+                <p>5,47</p>
+            </div>
+        </div>
+
+    </section>
 </body>
 </html>
