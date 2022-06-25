@@ -1,6 +1,7 @@
 *, *::after,*::before {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -51,7 +52,6 @@ body {
     display: flex;
     justify-content: center;
     align-content: center;
-
 }
 
 .calc_inputs_container {
@@ -66,6 +66,23 @@ body {
     justify-content: space-evenly;
     align-items: center;
 }
+
+.inputs_box {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.reverse_button {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    cursor: pointer;
+}
+
 
 .inputs_calc {
     display: flex;
@@ -89,6 +106,7 @@ body {
     justify-content: space-around;
     align-items: center;
 }
+
 .country_choose--flag {
     display: flex;
     flex-direction: row;
@@ -117,8 +135,15 @@ input.inputs {
 
     position: relative;
 }
+
+input:focus {
+    border: 2px solid rgb(138, 163, 240);
+    background-color: rgba(89, 131, 252, .2);
+}
+
 .top_input {
     position: relative;
+    margin-bottom: 3rem;
 }
 .top_input::before {
     content: "Mam";
@@ -130,9 +155,41 @@ input.inputs {
     font-size: 1rem;
     position: absolute;
 }
+.bottom_input {
+    position: relative;
+}
+.bottom_input::before {
+    content: "Chcę";
+    color: white;
+    height: 10px;
+    width: 10px;
+    top: 8px;
+    left: 50%;
+    font-size: 1rem;
+    position: absolute;
+}
+
+
+.btn_check {
+    width: 440px;
+    height: 80px;
+    border-radius: 5px;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    background-color: rgba(89, 131, 252, 1);
+
+    font-size: 1rem;
+    border: 1px solid rgba(89, 131, 252, 1);    
+    transition: background-color 100ms ease-in;
+}
+
+.btn_check:hover {
+    background-color: rgba(89, 131, 252, .7);
+}
+
 
 /*     BOTTOM RATES    */
-
 
 .bottom_rates {
     width: 70%;

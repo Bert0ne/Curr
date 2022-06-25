@@ -23,11 +23,13 @@
     
     <section class="calc">
         <div class="calc_inputs_container">
-            <div class="inputs_calc top_input">
-                <div class="country_choose">
+            <div class="inputs_box">
+
+                <div class="inputs_calc top_input">
+                    <div class="country_choose">
                     <div class="country_choose--flag">
-                        <img class="inputIMG" src="https://countryflagsapi.com/png/usa" alt="usa flag">
-                        <h3>USD</h3>
+                        <img class="inputIMG topIMG" src="https://countryflagsapi.com/png/usa" alt="usa flag">
+                        <h3 class="top">USD</h3>
                     </div>
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
@@ -36,13 +38,24 @@
             </div>
 
             <div class="reverse_button">
-                
+                <i class="fa-solid fa-shuffle fa-xl"></i>
             </div>
 
-            <div class="bottom_input"></div>
+            <div class="inputs_calc bottom_input">
+                <div class="country_choose">
+                    <div class="country_choose--flag">
+                        <img class="inputIMG bottomIMG" src="https://countryflagsapi.com/png/poland" alt="usa flag">
+                        <h3 class="input_country_bottom">POL</h3>
+                    </div>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
 
-            <button class="btn_check">Sprawdź Kurs</button>
-
+                <input type="text" id="top_input" class="inputs input_bottom">                
+            </div>
+            
+        </div>
+            <button class="btn_check">Sprawdź kurs</button>
+            
         </div>
 
 
