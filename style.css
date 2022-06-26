@@ -317,6 +317,7 @@ input.inputs:focus {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 .bottom_rates img {

@@ -30,17 +30,37 @@ const LOCAL_STORAGE_DATA = 'countryData'
 const LOCAL_STORAGE_HOUR = 'hourData'
 const d = new Date();
 let hour = d.getHours();
-    
+const bottomRatesContainer = document.querySelector('.bottom_rates');
+
+
 window.addEventListener('DOMContentLoaded', init());
 
 function init() {
     isLocalStorage();
     timerGetRates()
+    renderBottomRates()
+}
+
+function renderBottomRates() {
+    currenciesApiData.forEach(el => {
+        let liEl = `
+        <div class="single__rates">
+        <img src="https://countryflagsapi.com/png/${el.country}" alt="${el.country} flag">
+        <div class="single__rates--country">
+            <h3>${el.code}</h3>
+            <p>${el.mid}</p>
+        </div>
+    </div>
+        `
+
+        bottomRatesContainer.innerHTML += liEl;
+    })
 }
 
 function timerGetRates() {
     setInterval(() => {
         getData()
+        // DODAĆ RENDER KURSÓW
     }, 3600000);
 }
 
