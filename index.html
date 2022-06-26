@@ -17,48 +17,58 @@
 <body>
 
     <section class="title">
-        <h1 class="">Kalkulator walutowy</h1>
+        <h1 class="">Kalkulator walutowy<span class="dot_color">.</span></h1>
         <h3 class="">Wpisz kwotę w kalkulator walutowy i sprawdź swój przelicznik</h3>
     </section>
     
     <section class="calc">
         <div class="calc_inputs_container">
+
+
             <div class="inputs_box">
 
                 <div class="inputs_calc top_input">
+                        <div class="country_choose">
+                            <div class="country_choose--flag">
+                                <img class="inputIMG topIMG" src="https://countryflagsapi.com/png/usa" alt="usa flag">
+                                <h3 class="top">USD</h3>
+                            </div>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+
+                    <input type="text" id="top_input" class="inputs input_top">
+                </div>
+
+
+                <div class="reverse_button">
+                    <i class="fa-solid fa-shuffle fa-xl"></i>
+                </div>
+
+                <div class="inputs_calc bottom_input">
                     <div class="country_choose">
-                    <div class="country_choose--flag">
-                        <img class="inputIMG topIMG" src="https://countryflagsapi.com/png/usa" alt="usa flag">
-                        <h3 class="top">USD</h3>
+                        <div class="country_choose--flag">
+                            <img class="inputIMG bottomIMG" src="https://countryflagsapi.com/png/poland" alt="usa flag">
+                            <h3 class="input_country_bottom">POL</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down"></i>
                     </div>
-                    <i class="fa-solid fa-chevron-down"></i>
+
+                    <input type="text" id="top_input" class="inputs input_bottom">                
                 </div>
 
-                <input type="text" id="top_input" class="inputs input_top">
-            </div>
-
-            <div class="reverse_button">
-                <i class="fa-solid fa-shuffle fa-xl"></i>
-            </div>
-
-            <div class="inputs_calc bottom_input">
-                <div class="country_choose">
-                    <div class="country_choose--flag">
-                        <img class="inputIMG bottomIMG" src="https://countryflagsapi.com/png/poland" alt="usa flag">
-                        <h3 class="input_country_bottom">POL</h3>
-                    </div>
-                    <i class="fa-solid fa-chevron-down"></i>
+                <div class="calc_results">
+                    <div class="upperRate">1 EUR = 4,6481</div>
+                    <div class="bottomRate">1 PLN = 0,2151</div>
+                    <div class="rateforNumber"> Za 5000,00 PLN zapłacisz 1075 EUR</div>
                 </div>
 
-                <input type="text" id="top_input" class="inputs input_bottom">                
+                </div>
+                    <button class="btn_check">Sprawdź kurs</button>
+                </div>
+            
             </div>
             
         </div>
-            <button class="btn_check">Sprawdź kurs</button>
-            
-        </div>
-
-
     </section>
 
     <section class="bottom_rates">

@@ -43,11 +43,17 @@ body {
     font-size: 1.4rem;
     margin: 50px 0 60px;
 }
+
+.dot_color {
+    color: rgba(89, 131, 252, 1);
+}
+
+
 /*       CALC        */
 
 .calc {
     width: 100%;
-    height: auto;
+    height: 600px;
     
     display: flex;
     justify-content: center;
@@ -55,8 +61,9 @@ body {
 }
 
 .calc_inputs_container {
-    width: clamp(200px, 600px, 800px);
-    height: 400px;
+    width: 600px;
+    height: 500px;
+
     border-radius: 5px;
     border: 1px solid rgba(89, 131, 252, 1);
 
@@ -76,11 +83,11 @@ body {
 }
 
 .reverse_button {
-    position: absolute;
+    cursor: pointer;
+    height: 40px;
     display: flex;
     justify-content: center;
-    align-self: center;
-    cursor: pointer;
+    align-items: center;
 }
 
 
@@ -143,7 +150,6 @@ input:focus {
 
 .top_input {
     position: relative;
-    margin-bottom: 3rem;
 }
 .top_input::before {
     content: "Mam";
@@ -187,6 +193,20 @@ input:focus {
 .btn_check:hover {
     background-color: rgba(89, 131, 252, .7);
 }
+
+.calc_results {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+.upperRate, .bottomRate, .rateforNumber {
+    margin-top: 15px;
+}
+.rateforNumber {
+    margin-bottom: 15px;
+}
+
 
 
 /*     BOTTOM RATES    */
