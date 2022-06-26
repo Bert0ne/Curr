@@ -26,3 +26,9 @@
 //     })
 // }
 
+    
+window.addEventListener('DOMContentLoaded', isLocalStorage);
+
+function isLocalStorage() {
+    
+}
