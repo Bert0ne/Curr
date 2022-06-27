@@ -1,30 +1,12 @@
 import currCodeAndCountry from './currenciesCodeCountry.js'
 
-    
-//     fetch(
-//         `http://api.nbp.pl/api/exchangerates/tables/a/`
-//         )
-//     .then(resp => resp.json())
-//     .then(data => {
-//         currenciesApiData = data[0].rates
-//             connectData()
-//             console.log(currFullData);
-//     });
-
-
-// function connectData() {
-//     currenciesApiData.map( el =>{
-//         currCodeAndCountry.forEach((elSM, index) => {
-//             if(el.code == elSM.code) {
-//                 currFullData = currenciesApiData
-//                 currFullData[index].country = currCodeAndCountry[index].country.toLowerCase()
-//                 currFullData[index].src = `https://countryflagsapi.com/png/${currFullData[index].country}`
-//             }
-//         })
-//     })
-// }
 
 let currenciesApiData = []; 
+let mainCurrenciesApiData = [];
+
+
+let mainCountriesCode = ['USD','CHF','UAH','GBP','EUR'];
+let polandData = {currency: 'polski złoty', code: 'PLN', mid: 1, country: 'poland', src: 'https://countryflagsapi.com/png/poland'}
 let currFullData;
 const LOCAL_STORAGE_DATA = 'countryData'
 const LOCAL_STORAGE_HOUR = 'hourData'
@@ -38,11 +20,12 @@ window.addEventListener('DOMContentLoaded', init());
 function init() {
     isLocalStorage();
     timerGetRates()
+    filterMainCurrency()
     renderBottomRates()
 }
 
 function renderBottomRates() {
-    currenciesApiData.forEach(el => {
+    mainCurrenciesApiData.forEach(el => {
         let liEl = `
         <div class="single__rates">
         <img src="https://countryflagsapi.com/png/${el.country}" alt="${el.country} flag">
@@ -70,7 +53,6 @@ function isLocalStorage() {
 
     if(storage && timeStorage == hour) {
         currenciesApiData = JSON.parse(storage)
-        
         console.log(currenciesApiData);
     } else {
         getData()
@@ -84,6 +66,7 @@ function getData() {
     .then(resp => resp.json())
     .then(data => {
         currenciesApiData = data[0].rates
+            currenciesApiData.push(polandData)
             connectData()
             console.log(currFullData);
             localStorage.setItem(LOCAL_STORAGE_DATA, JSON.stringify(currenciesApiData))
@@ -92,6 +75,7 @@ function getData() {
 }
 
 function connectData() {
+    console.log('elo');
     currenciesApiData.map( el =>{
         currCodeAndCountry.forEach((elSM, index) => {
             if(el.code == elSM.code) {
@@ -103,4 +87,11 @@ function connectData() {
     })
 }
 
-
+function filterMainCurrency() {
+    currenciesApiData.forEach(el => {
+        if(mainCountriesCode.includes(el.code)) {
+            mainCurrenciesApiData.push(el)
+        }
+    })
+    console.log(mainCurrenciesApiData);
+}

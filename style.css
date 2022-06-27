@@ -322,6 +322,7 @@ input.inputs:focus {
 
 .bottom_rates img {
     width: 70px;
+    height: 50px;
 }
 
 .single__rates {
@@ -337,8 +338,8 @@ input.inputs:focus {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    align-content: center;
-    align-items: center;
+    align-items: flex-start;
+    margin-left: 10px;
 }
 
 
