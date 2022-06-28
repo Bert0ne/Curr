@@ -28,13 +28,13 @@
             <div class="inputs_box">
 
                 <div class="inputs_calc top_input">
-                        <div class="country_choose">
-                            <div class="country_choose--flag">
-                                <img class="inputIMG topIMG" src="https://countryflagsapi.com/png/usa" alt="usa flag">
-                                <h3 class="top">USD</h3>
-                            </div>
-                            <i class="fa-solid fa-chevron-down"></i>
+                    <div class="country_choose" data-index="0">
+                        <div class="country_choose--flag">
+                            <img class="inputIMG topIMG" src="https://countryflagsapi.com/png/usa" alt="usa flag">
+                            <h3 class="top">USD</h3>
                         </div>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
                     
                         <!-- COUNTRY LIST  -->
 
@@ -46,7 +46,7 @@
                         <label class="inputRateSearchLabel" for="waluta"></label>
 
                         <h5 class="countryList__subtitles">Główne </h5>
-                            <ul>
+                            <ul class="countryList_main">
                                 <li class="active">
                                     <img class="countryList__subtitles_img" src="https://countryflagsapi.com/png/poland" alt="Europe flag">
 
@@ -91,7 +91,7 @@
 
                         <h5 class="countryList__subtitles h5_country">Pozostałe</h5>
 
-                        <ul>
+                        <ul class="countryList_rest">
 
                             <li>
                                 <img class="countryList__subtitles_img" src="https://countryflagsapi.com/png/europe" alt="Europe flag">
@@ -122,7 +122,7 @@
                 </div>
 
                 <div class="inputs_calc bottom_input">
-                    <div class="country_choose">
+                    <div class="country_choose" data-index="1">
                         <div class="country_choose--flag">
                             <img class="inputIMG bottomIMG" src="https://countryflagsapi.com/png/poland" alt="usa flag">
                             <h3 class="input_country_bottom">POL</h3>
@@ -138,8 +138,8 @@
                         <input class="inputRateSearch" type="text" id="waluta" placeholder="wpisz walutę">
                         <label class="inputRateSearchLabel" for="waluta"></label>
 
-                        <h5 class="countryList__subtitles">Główne </h5>
-                            <ul>
+                        <h5 class="countryList__subtitles countryList__subtitles">Główne </h5>
+                            <ul class="countryList_main">
                                 <li class="active">
                                     <img class="countryList__subtitles_img" src="https://countryflagsapi.com/png/poland" alt="Europe flag">
 
@@ -184,7 +184,7 @@
 
                         <h5 class="countryList__subtitles h5_country">Pozostałe</h5>
 
-                        <ul>
+                        <ul class="countryList_rest">
 
                             <li>
                                 <img class="countryList__subtitles_img" src="https://countryflagsapi.com/png/poland" alt="Europe flag">

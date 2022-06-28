@@ -342,6 +342,11 @@ input.inputs:focus {
     margin-left: 10px;
 }
 
+.isVisible {
+    opacity: 1;
+    display: block;
+}
+
 
 
 

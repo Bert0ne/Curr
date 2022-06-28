@@ -3,8 +3,6 @@ import currCodeAndCountry from './currenciesCodeCountry.js'
 
 let currenciesApiData = []; 
 let mainCurrenciesApiData = [];
-
-
 let mainCountriesCode = ['USD','CHF','UAH','GBP','EUR'];
 let polandData = {currency: 'polski złoty', code: 'PLN', mid: 1, country: 'poland', src: 'https://countryflagsapi.com/png/poland'}
 let currFullData;
@@ -13,7 +11,10 @@ const LOCAL_STORAGE_HOUR = 'hourData'
 const d = new Date();
 let hour = d.getHours();
 const bottomRatesContainer = document.querySelector('.bottom_rates');
-
+const countryChoose = document.querySelectorAll('.country_choose');
+const countryList = document.querySelectorAll('.countryList')
+const countryListMain = document.querySelectorAll('.countryList_main');
+const countryListRest = document.querySelectorAll('.countryList_rest');
 
 window.addEventListener('DOMContentLoaded', init());
 
@@ -21,7 +22,9 @@ function init() {
     isLocalStorage();
     timerGetRates()
     filterMainCurrency()
+    initListeners()
     renderBottomRates()
+    renderCountryList()
 }
 
 function renderBottomRates() {
@@ -94,4 +97,20 @@ function filterMainCurrency() {
         }
     })
     console.log(mainCurrenciesApiData);
+}
+
+function initListeners() {
+    // country_choose
+    // countryList/
+    countryChoose.forEach(el => {
+        el.addEventListener('click', (e) => {
+            let index = e.currentTarget.dataset.index
+            countryList[index].classList.toggle('isVisible')
+        })
+    })
+
+}
+
+function renderCountryList() {
+
 }
