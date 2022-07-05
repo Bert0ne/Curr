@@ -20,11 +20,16 @@ window.addEventListener('DOMContentLoaded', init());
 
 function init() {
     isLocalStorage();
-    // timerGetRates()
+
+}
+
+function renderStuff() {
     filterMainCurrency()
     renderBottomRates()
-    initListeners()
     renderCountryList()
+
+    timerGetRates()
+    initListeners()
 }
 
 function isLocalStorage() {
@@ -35,7 +40,7 @@ function isLocalStorage() {
     if(storage && timeStorage == hour) {
         currenciesApiData = JSON.parse(storage)
         currFullData = currenciesApiData
-
+        renderStuff();
     } else {
         getData()
         console.log('dupa');
@@ -54,6 +59,8 @@ function getData() {
 
             localStorage.setItem(LOCAL_STORAGE_DATA, JSON.stringify(currFullData))
             localStorage.setItem(LOCAL_STORAGE_HOUR, JSON.stringify(hour))
+
+            renderStuff()
     });
 }
 
