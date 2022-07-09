@@ -43,7 +43,6 @@ function isLocalStorage() {
         renderStuff();
     } else {
         getData()
-        console.log('dupa');
     }
 }
 
@@ -66,7 +65,6 @@ function getData() {
 
 function connectData() {
     currFullData = currenciesApiData
-    console.log(currFullData);
 
     currFullData.forEach( el =>{
         currCodeAndCountry.forEach((elSM, index) => {
@@ -79,7 +77,6 @@ function connectData() {
 }
 
 function filterMainCurrency() {
-console.log(currenciesApiData);
     currenciesApiData.forEach(el => {
         if(mainCountriesCode.includes(el.code)) {
             mainCurrenciesApiData.push(el)
@@ -88,14 +85,25 @@ console.log(currenciesApiData);
 }
 
 function initListeners() {
-    // country_choose
-    // countryList/
-    countryChoose.forEach(el => {
-        el.addEventListener('click', (e) => {
-            let index = e.currentTarget.dataset.index
-            countryList[index].classList.toggle('isVisible')
+    buttonsInputChange()
+}
+
+function buttonsInputChange() {
+
+        document.addEventListener('click', e => {
+
+            let divTarget = e.target.closest('.country_choose')
+            if(divTarget) {
+                let indexTarget = divTarget.dataset.index
+                countryList[indexTarget].classList.toggle('isVisible')
+                console.log(indexTarget);
+            } else {
+                countryList.forEach(el => {
+                    el.classList.remove('isVisible')
+                })
+            }   
         })
-    })
+
 
 }
 
@@ -103,9 +111,7 @@ function renderCountryList() {
 
 }
 
-
 function renderBottomRates() {
-    console.log(mainCurrenciesApiData);
     mainCurrenciesApiData.forEach(el => {
         let liEl = `
         <div class="single__rates">
@@ -123,8 +129,7 @@ function renderBottomRates() {
 
 function timerGetRates() {
     setInterval(() => {
-        // getData()
-        // DODAĆ RENDER KURSÓW
+        window.location.reload()
     }, 3600000);
 }
 
