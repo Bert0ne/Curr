@@ -91,20 +91,21 @@ function initListeners() {
 function buttonsInputChange() {
 
         document.addEventListener('click', e => {
+            countryList.forEach(el => {
+                el.classList.remove('isVisible')
+            })
 
+            
             let divTarget = e.target.closest('.country_choose')
             if(divTarget) {
                 let indexTarget = divTarget.dataset.index
                 countryList[indexTarget].classList.toggle('isVisible')
-                console.log(indexTarget);
             } else {
                 countryList.forEach(el => {
                     el.classList.remove('isVisible')
                 })
             }   
         })
-
-
 }
 
 function renderCountryList() {
