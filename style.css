@@ -82,9 +82,11 @@ body {
 .reverse_button {
     cursor: pointer;
     height: 40px;
+    width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: center;
 }
 
 
@@ -173,6 +175,9 @@ body {
     padding: 15px 20px 15px 20px;
 }
 
+.countryList ul li:hover {
+    background-color: rgba(29, 34, 34, 0.2)
+}
 .countryList__countryName {
     display: flex;
     flex-direction: column;

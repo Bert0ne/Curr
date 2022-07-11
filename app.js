@@ -3,6 +3,7 @@ import currCodeAndCountry from './currenciesCodeCountry.js'
 
 let currenciesApiData = []; 
 let mainCurrenciesApiData = [];
+let restCurrenciesApiData = [];
 let mainCountriesCode = ['USD','CHF','UAH','GBP','EUR'];
 let polandData = {currency: 'polski złoty', code: 'PLN', mid: 1, country: 'poland', src: 'https://countryflagsapi.com/png/poland'}
 let currFullData;
@@ -20,7 +21,6 @@ window.addEventListener('DOMContentLoaded', init());
 
 function init() {
     isLocalStorage();
-
 }
 
 function renderStuff() {
@@ -82,6 +82,12 @@ function filterMainCurrency() {
             mainCurrenciesApiData.push(el)
         }
     })
+
+    currenciesApiData.forEach(el => {
+        if(!mainCountriesCode.includes(el.code)) {
+            restCurrenciesApiData.push(el)
+        }
+    })
 }
 
 function initListeners() {
@@ -108,7 +114,7 @@ function buttonsInputChange() {
                         el.classList.remove('isVisible')
                     })
                 }
-                
+
             } else {
                 countryList.forEach(el => {
                     el.classList.remove('isVisible')
@@ -118,7 +124,48 @@ function buttonsInputChange() {
 }
 
 function renderCountryList() {
+    renderMainCountryList();
+    renderRestCountryList();
+}
 
+function renderMainCountryList() {
+    countryListMain.forEach( (el, index)  => {
+        
+        mainCurrenciesApiData.forEach( liElement => {
+            let liEl= `            
+            <li>
+                <img class="countryList__subtitles_img" src="${liElement.src}" alt="${liElement.country} flag">
+
+                <div class="countryList__countryName">
+                    <span class="countryList__countryName--shortName">${liElement.code}</span>
+
+                    <span class="countryList__countryName--rateName">${liElement.currency}</span>
+                </div>
+            </li> 
+            `
+            countryListMain[index].innerHTML += liEl
+        })
+    })
+}
+
+function renderRestCountryList() {
+    countryListMain.forEach( (el, index)  => {
+        
+        restCurrenciesApiData.forEach( liElement => {
+            let liEl= `            
+            <li>
+                <img class="countryList__subtitles_img" src="${liElement.src}" alt="${liElement.country} flag">
+
+                <div class="countryList__countryName">
+                    <span class="countryList__countryName--shortName">${liElement.code}</span>
+
+                    <span class="countryList__countryName--rateName">${liElement.currency}</span>
+                </div>
+            </li> 
+            `
+            countryListRest[index].innerHTML += liEl
+        })
+    })
 }
 
 function renderBottomRates() {
