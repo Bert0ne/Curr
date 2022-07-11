@@ -16,6 +16,7 @@ const countryChoose = document.querySelectorAll('.country_choose');
 const countryList = document.querySelectorAll('.countryList')
 const countryListMain = document.querySelectorAll('.countryList_main');
 const countryListRest = document.querySelectorAll('.countryList_rest');
+const inputRateSearch = document.querySelectorAll('.inputRateSearch');
 
 window.addEventListener('DOMContentLoaded', init());
 
@@ -91,12 +92,15 @@ function filterMainCurrency() {
 }
 
 function initListeners() {
-    buttonsInputChange()
+    countryChooseBtn()
+    countryInputFilter()
 }
 
-function buttonsInputChange() {
-
+function countryChooseBtn()
+ {
         document.addEventListener('click', e => {
+
+            if(e.target.classList.contains('inputRateSearch')) return
 
 
             let divTarget = e.target.closest('.country_choose')
@@ -121,6 +125,20 @@ function buttonsInputChange() {
                 })
             }   
         })
+}
+
+function countryInputFilter() {
+    inputRateSearch.forEach( input => {
+        input.addEventListener('keyup', e =>{
+            console.log(e.key, input.value);
+            let letter = input.value;
+
+            let renderedArray = mainCurrenciesApiData.filter( e => {
+                return e.currency.includes(letter)
+            })
+            console.log(renderedArray);
+        })
+    })
 }
 
 function renderCountryList() {
