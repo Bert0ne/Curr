@@ -96,12 +96,19 @@ function initListeners() {
     countryInputFilter()
 }
 
+function clearCurrencyInput() {
+    inputRateSearch.forEach(el => el.value = '');
+    renderCountryList()
+}
+
+
 function countryChooseBtn()
  {
         document.addEventListener('click', e => {
 
             if(e.target.classList.contains('inputRateSearch')) return
-
+            clearCurrencyInput()
+            
 
             let divTarget = e.target.closest('.country_choose')
             if(divTarget) {
@@ -119,7 +126,7 @@ function countryChooseBtn()
                     })
                 }
 
-            } else {
+            } else { 
                 countryList.forEach(el => {
                     el.classList.remove('isVisible')
                 })
@@ -136,6 +143,8 @@ function countryInputFilter() {
             let renderedArray = mainCurrenciesApiData.filter( e => {
                 return e.currency.includes(letter)
             })
+            renderMainCountryList(renderedArray)
+
             console.log(renderedArray);
         })
     })
@@ -146,10 +155,15 @@ function renderCountryList() {
     renderRestCountryList();
 }
 
-function renderMainCountryList() {
+function renderMainCountryList(defaultArr = mainCurrenciesApiData) {
+    // countryListMain[0].innerHTML = ' '
+    // countryListMain[1].innerHTML = ' '
+
+
     countryListMain.forEach( (el, index)  => {
-        
-        mainCurrenciesApiData.forEach( liElement => {
+        countryListMain[index].innerHTML = ' '
+
+        defaultArr.forEach( liElement => {
             let liEl= `            
             <li>
                 <img class="countryList__subtitles_img" src="${liElement.src}" alt="${liElement.country} flag">
@@ -160,7 +174,8 @@ function renderMainCountryList() {
                     <span class="countryList__countryName--rateName">${liElement.currency}</span>
                 </div>
             </li> 
-            `
+            `        
+
             countryListMain[index].innerHTML += liEl
         })
     })
