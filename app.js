@@ -17,6 +17,19 @@ const countryList = document.querySelectorAll('.countryList')
 const countryListMain = document.querySelectorAll('.countryList_main');
 const countryListRest = document.querySelectorAll('.countryList_rest');
 const inputRateSearch = document.querySelectorAll('.inputRateSearch');
+let lastIndex = null;
+
+const dataFirstIndex = {
+    liValue: 'USD',
+    index: 0,
+    inputValue: 0
+}
+
+const dataSecondIndex = {
+    liValue: 'PLN',
+    index: 1,
+    inputValue: 5000
+}
 
 window.addEventListener('DOMContentLoaded', init());
 
@@ -106,11 +119,22 @@ function countryChooseBtn()
  {
         document.addEventListener('click', e => {
 
-            if(e.target.classList.contains('inputRateSearch')) return
-            clearCurrencyInput()
-            
-
+            let li = e.target.closest('li')            
             let divTarget = e.target.closest('.country_choose')
+
+            if(e.target.classList.contains('inputRateSearch')) return
+            clearCurrencyInput();
+
+            if(divTarget) {
+                let dataSetDivTarget = divTarget.dataset.index
+                countryChooseClickIndex(dataSetDivTarget)
+            }
+
+            if(li) {
+                cuntryChooseClickLi(li)
+            }
+
+            
             if(divTarget) {
                 let indexTarget = divTarget.dataset.index
 
@@ -134,18 +158,81 @@ function countryChooseBtn()
         })
 }
 
+function cuntryChooseClickLi(li) {
+    let CurValue = li.querySelector('.countryList__countryName--shortName').innerHTML
+    if(lastIndex == 0) {
+        dataFirstIndex.liValue = CurValue;
+    } else {
+        dataSecondIndex.liValue = CurValue;
+    }
+    console.log(dataFirstIndex, dataSecondIndex);
+    
+    if(dataFirstIndex.liValue !== dataSecondIndex.liValue) {
+        renderInputCountry(lastIndex)
+    } else {
+        switchValues()
+    }
+
+}
+
+function renderInputCountry(indexNumb) {
+    // let dataIndexAll = [dataFirstIndex, dataSecondIndex]
+
+    // dataIndexAll.forEach( (el, index) => {
+    //     let renderData = `
+    //         <div class="country_choose--flag">
+    //             <img class="inputIMG topIMG" src="https://countryflagsapi.com/png/${el.liValue.toLocaleLowerCase()}" alt="${el.liValue} flag">
+    //             <h3 class="top">${el.liValue.toUpperCase()}</h3>
+    //         </div>
+    //         <i class="fa-solid fa-chevron-down"></i>
+
+    //     `
+
+    //     countryChoose[index].innerHTML = renderData;
+    // })
+
+    let dataIndexAll = [dataFirstIndex, dataSecondIndex]
+    let code = dataIndexAll[indexNumb].liValue
+    let countryData = currFullData.filter( el => {
+        return el.code === code
+    })
+    let country = countryData[0]
+
+    countryChoose[indexNumb].innerHTML = `
+
+             <div class="country_choose--flag">
+                 <img class="inputIMG topIMG" src="https://countryflagsapi.com/png/${country.country}" alt="${country.country} flag">
+                 <h3 class="top">${country.code.toUpperCase()}</h3>
+            </div>
+           <i class="fa-solid fa-chevron-down"></i>
+    `
+}
+
+function switchValues() {
+    console.log('swichValues');
+}
+
+function countryChooseClickIndex(index) {
+    // index == 0 ? dataFirstIndex.index = index : dataSecondIndex.index = index
+    lastIndex = index
+}
+
 function countryInputFilter() {
     inputRateSearch.forEach( input => {
         input.addEventListener('keyup', e =>{
-            console.log(e.key, input.value);
             let letter = input.value;
 
-            let renderedArray = mainCurrenciesApiData.filter( e => {
+            let renderedMainArray = mainCurrenciesApiData.filter( e => {
                 return e.currency.includes(letter)
             })
-            renderMainCountryList(renderedArray)
 
-            console.log(renderedArray);
+            let renderedRestArray = restCurrenciesApiData.filter( e => {
+                return e.currency.includes(letter)
+            })
+
+
+            renderMainCountryList(renderedMainArray)
+            renderRestCountryList(renderedRestArray)
         })
     })
 }
@@ -156,10 +243,6 @@ function renderCountryList() {
 }
 
 function renderMainCountryList(defaultArr = mainCurrenciesApiData) {
-    // countryListMain[0].innerHTML = ' '
-    // countryListMain[1].innerHTML = ' '
-
-
     countryListMain.forEach( (el, index)  => {
         countryListMain[index].innerHTML = ' '
 
@@ -181,10 +264,11 @@ function renderMainCountryList(defaultArr = mainCurrenciesApiData) {
     })
 }
 
-function renderRestCountryList() {
-    countryListMain.forEach( (el, index)  => {
-        
-        restCurrenciesApiData.forEach( liElement => {
+function renderRestCountryList(defaultArr = restCurrenciesApiData) {
+    countryListRest.forEach( (el, index)  => {
+        countryListRest[index].innerHTML = ' '
+
+        defaultArr.forEach( liElement => {
             let liEl= `            
             <li>
                 <img class="countryList__subtitles_img" src="${liElement.src}" alt="${liElement.country} flag">
@@ -212,7 +296,6 @@ function renderBottomRates() {
         </div>
     </div>
         `
-
         bottomRatesContainer.innerHTML += liEl;
     })
 }
