@@ -31,6 +31,16 @@ const dataSecondIndex = {
     inputValue: 5000
 }
 
+const liArrayActiveFirst = {
+    main: [],
+    rest: []
+}
+
+const liArrayActiveSecond = {
+    main: [],
+    rest: []
+}
+
 window.addEventListener('DOMContentLoaded', init());
 
 function init() {
@@ -55,8 +65,11 @@ function isLocalStorage() {
         currenciesApiData = JSON.parse(storage)
         currFullData = currenciesApiData
         renderStuff();
+        fullFillArrays()
+
     } else {
         getData()
+        fullFillArrays()
     }
 }
 
@@ -116,10 +129,11 @@ function clearCurrencyInput() {
 
 
 function countryChooseBtn()
- {
+{
         document.addEventListener('click', e => {
 
-            let li = e.target.closest('li')            
+            let ul = e.target.closest('ul')  
+            let li = e.target.closest('li')          
             let divTarget = e.target.closest('.country_choose')
 
             if(e.target.classList.contains('inputRateSearch')) return
@@ -132,6 +146,10 @@ function countryChooseBtn()
 
             if(li) {
                 cuntryChooseClickLi(li)
+                let whichArr = ul.classList.contains('countryList_main') ? 'main' : 'rest'  // która lista
+                let whichInput = lastIndex // który input
+                let liIndex = li.dataset.index
+                //teraz zrobimy funkcje na umieszczenie tego gówna w tamtych tablicach.
             }
 
             
@@ -158,12 +176,24 @@ function countryChooseBtn()
         })
 }
 
+function fullFillArrays() {
+    fullFillArray(liArrayActiveFirst.main,mainCurrenciesApiData)
+    fullFillArray(liArrayActiveSecond.main,restCurrenciesApiData)
+    fullFillArray(liArrayActiveFirst.rest,mainCurrenciesApiData)
+    fullFillArray(liArrayActiveSecond.rest,restCurrenciesApiData)
+}
+
+function fullFillArray(whichArr, whichData) {
+    whichArr = new Array(whichData.length).fill(0)
+}
+
 function cuntryChooseClickLi(li) {
-    let CurValue = li.querySelector('.countryList__countryName--shortName').innerHTML
+    let curValue = li.querySelector('.countryList__countryName--shortName').innerHTML
+
     if(lastIndex == 0) {
-        dataFirstIndex.liValue = CurValue;
+        dataFirstIndex.liValue = curValue;
     } else {
-        dataSecondIndex.liValue = CurValue;
+        dataSecondIndex.liValue = curValue;
     }
     console.log(dataFirstIndex, dataSecondIndex);
     
@@ -172,7 +202,6 @@ function cuntryChooseClickLi(li) {
     } else {
         switchValues()
     }
-
 }
 
 function renderInputCountry(indexNumb) {
@@ -246,9 +275,9 @@ function renderMainCountryList(defaultArr = mainCurrenciesApiData) {
     countryListMain.forEach( (el, index)  => {
         countryListMain[index].innerHTML = ' '
 
-        defaultArr.forEach( liElement => {
+        defaultArr.forEach( (liElement, indexS) => {
             let liEl= `            
-            <li>
+            <li data-index="${indexS}">
                 <img class="countryList__subtitles_img" src="${liElement.src}" alt="${liElement.country} flag">
 
                 <div class="countryList__countryName">
