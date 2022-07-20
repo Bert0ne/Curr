@@ -150,6 +150,7 @@ function countryChooseBtn()
                 let whichInput = lastIndex // który input
                 let liIndex = li.dataset.index
                 //teraz zrobimy funkcje na umieszczenie tego gówna w tamtych tablicach.
+                setActiveToArray(whichInput, whichArr, liIndex)
             }
 
             
@@ -176,11 +177,33 @@ function countryChooseBtn()
         })
 }
 
+function setActiveToArray(upDown, mainRest, liIndex) {
+
+    // let activeArrays = [liArrayActiveFirst,liArrayActiveSecond];
+    // let mainOrRest = mainRest = 'main' ? main : rest
+
+    // console.log(activeArrays[upDown].mainOrRest)
+
+    // if(upDown === 0) {
+    //     console.log(activeArrays[upDown].mainRest)
+    // } else {
+    //     console.log(activeArrays[up].mainRest)
+    // }
+    // console.log(elo);
+}
+
+// const liArrayActiveFirst = {
+//     main: [],
+//     rest: []
+// }
+
+
 function fullFillArrays() {
     fullFillArray(liArrayActiveFirst.main,mainCurrenciesApiData)
     fullFillArray(liArrayActiveSecond.main,restCurrenciesApiData)
     fullFillArray(liArrayActiveFirst.rest,mainCurrenciesApiData)
     fullFillArray(liArrayActiveSecond.rest,restCurrenciesApiData)
+    console.log(liArrayActiveSecond.rest);
 }
 
 function fullFillArray(whichArr, whichData) {
@@ -297,9 +320,9 @@ function renderRestCountryList(defaultArr = restCurrenciesApiData) {
     countryListRest.forEach( (el, index)  => {
         countryListRest[index].innerHTML = ' '
 
-        defaultArr.forEach( liElement => {
+        defaultArr.forEach( (liElement, indexS) => {
             let liEl= `            
-            <li>
+            <li data-index="${indexS}">
                 <img class="countryList__subtitles_img" src="${liElement.src}" alt="${liElement.country} flag">
 
                 <div class="countryList__countryName">
