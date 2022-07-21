@@ -192,23 +192,13 @@ function setActiveToArray(upDown, mainRest, liIndex) {
     // console.log(elo);
 }
 
-// const liArrayActiveFirst = {
-//     main: [],
-//     rest: []
-// }
-
-
 function fullFillArrays() {
-    fullFillArray(liArrayActiveFirst.main,mainCurrenciesApiData)
-    fullFillArray(liArrayActiveSecond.main,restCurrenciesApiData)
-    fullFillArray(liArrayActiveFirst.rest,mainCurrenciesApiData)
-    fullFillArray(liArrayActiveSecond.rest,restCurrenciesApiData)
-    console.log(liArrayActiveSecond.rest);
+    liArrayActiveFirst.main = new Array(mainCurrenciesApiData.length).fill(0)
+    liArrayActiveSecond.main = new Array(mainCurrenciesApiData.length).fill(0)
+    liArrayActiveFirst.rest = new Array(restCurrenciesApiData.length).fill(0)
+    liArrayActiveSecond.rest = new Array(restCurrenciesApiData.length).fill(0)
 }
 
-function fullFillArray(whichArr, whichData) {
-    whichArr = new Array(whichData.length).fill(0)
-}
 
 function cuntryChooseClickLi(li) {
     let curValue = li.querySelector('.countryList__countryName--shortName').innerHTML
