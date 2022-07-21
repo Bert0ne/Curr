@@ -117,6 +117,13 @@ function filterMainCurrency() {
     })
 }
 
+function fullFillArrays() {
+    liArrayActiveFirst.main = new Array(mainCurrenciesApiData.length).fill(0)
+    liArrayActiveSecond.main = new Array(mainCurrenciesApiData.length).fill(0)
+    liArrayActiveFirst.rest = new Array(restCurrenciesApiData.length).fill(0)
+    liArrayActiveSecond.rest = new Array(restCurrenciesApiData.length).fill(0)
+}
+
 function initListeners() {
     countryChooseBtn()
     countryInputFilter()
@@ -179,25 +186,38 @@ function countryChooseBtn()
 
 function setActiveToArray(upDown, mainRest, liIndex) {
 
-    // let activeArrays = [liArrayActiveFirst,liArrayActiveSecond];
-    // let mainOrRest = mainRest = 'main' ? main : rest
+    // console.log(upDown);
+    let activeArrays = [liArrayActiveFirst,liArrayActiveSecond];
+    // let mainOrRest = mainRest = 'main' ? 'main' : 'rest'
 
     // console.log(activeArrays[upDown].mainOrRest)
+    console.log(liIndex);
+    if(upDown == 0) {
+        if(mainRest == 'main') {
+            activeArrays[upDown].main[liIndex] = 1
+            console.log(activeArrays[upDown].main[liIndex]);
+        }
 
-    // if(upDown === 0) {
-    //     console.log(activeArrays[upDown].mainRest)
-    // } else {
-    //     console.log(activeArrays[up].mainRest)
-    // }
+        if(mainRest !== 'main') {
+            console.log(activeArrays[upDown].rest[liIndex]);
+
+        }
+    } 
+    if(upDown == 1) {
+        if(mainRest == 'main') {
+            console.log(activeArrays[upDown].main[liIndex]);
+
+        }
+
+        if(mainRest !== 'main') {
+            console.log(activeArrays[upDown].rest[liIndex]);
+
+        }
+    }
     // console.log(elo);
 }
 
-function fullFillArrays() {
-    liArrayActiveFirst.main = new Array(mainCurrenciesApiData.length).fill(0)
-    liArrayActiveSecond.main = new Array(mainCurrenciesApiData.length).fill(0)
-    liArrayActiveFirst.rest = new Array(restCurrenciesApiData.length).fill(0)
-    liArrayActiveSecond.rest = new Array(restCurrenciesApiData.length).fill(0)
-}
+
 
 
 function cuntryChooseClickLi(li) {
