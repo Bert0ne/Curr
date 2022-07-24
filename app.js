@@ -66,11 +66,22 @@ function isLocalStorage() {
         currFullData = currenciesApiData
         renderStuff();
         fullFillArrays()
+        grabLiElements()
 
     } else {
         getData()
         fullFillArrays()
+        grabLiElements()
     }
+}
+// activeArrays[upDown].mainLiList = document.querySelectorAll('.countryList_main li')
+// console.log(activeArrays[upDown].mainLiList);
+
+function grabLiElements() {
+    liArrayActiveFirst.liElMainList =  [...countryListMain[0].querySelectorAll('li')]
+    liArrayActiveFirst.liElRestList =  [...countryListRest[0].querySelectorAll('li')]
+    liArrayActiveSecond.liElMainList =  [...countryListMain[1].querySelectorAll('li')]
+    liArrayActiveSecond.liElRestList =  [...countryListRest[1].querySelectorAll('li')]
 }
 
 function getData() {
@@ -190,31 +201,31 @@ function setActiveToArray(upDown, mainRest, liIndex) {
     let activeArrays = [liArrayActiveFirst,liArrayActiveSecond];
     // let mainOrRest = mainRest = 'main' ? 'main' : 'rest'
 
-    // console.log(activeArrays[upDown].mainOrRest)
     console.log(liIndex);
     if(upDown == 0) {
+        if(mainRest == 'main') {
+            activeArrays[upDown].main[liIndex] = 1
+            console.log(activeArrays[upDown].main[liIndex]);
+            // activeArrays[upDown].mainLiList = document.querySelectorAll('.countryList_main li')
+            // console.log(activeArrays[upDown].mainLiList);
+        }
+
+        if(mainRest !== 'main') {
+            activeArrays[upDown].rest[liIndex] = 1
+            console.log(activeArrays[upDown].rest[liIndex]);
+        }
+    } 
+    if(upDown == 1) {
         if(mainRest == 'main') {
             activeArrays[upDown].main[liIndex] = 1
             console.log(activeArrays[upDown].main[liIndex]);
         }
 
         if(mainRest !== 'main') {
+            activeArrays[upDown].rest[liIndex] = 1
             console.log(activeArrays[upDown].rest[liIndex]);
-
-        }
-    } 
-    if(upDown == 1) {
-        if(mainRest == 'main') {
-            console.log(activeArrays[upDown].main[liIndex]);
-
-        }
-
-        if(mainRest !== 'main') {
-            console.log(activeArrays[upDown].rest[liIndex]);
-
         }
     }
-    // console.log(elo);
 }
 
 
