@@ -140,11 +140,11 @@ function fullFillArrays(x = "all") {
     }
     if(x == 0) {
         liArrayActiveFirst.main = new Array(mainCurrenciesApiData.length).fill(0)
-        liArrayActiveSecond.main = new Array(mainCurrenciesApiData.length).fill(0)
+        liArrayActiveFirst.rest = new Array(restCurrenciesApiData.length).fill(0)
     }
     
     if(x == 1) {
-        liArrayActiveFirst.rest = new Array(restCurrenciesApiData.length).fill(0)
+        liArrayActiveSecond.main = new Array(mainCurrenciesApiData.length).fill(0)
         liArrayActiveSecond.rest = new Array(restCurrenciesApiData.length).fill(0)
     }
 
