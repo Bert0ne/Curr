@@ -32,17 +32,13 @@ const dataSecondIndex = {
 }
 
 const liArrayActiveFirst = {
-    main: [],
-    rest: [],
-    liElMainList: null,
-    liElRestList: null
+    liElMainCode: '',
+    liElRestCode: ''
 }
 
 const liArrayActiveSecond = {
-    main: [],
-    rest: [],
-    liElMainList: null,
-    liElRestList: null
+    liElMainCode: '',
+    liElRestCode: ''
 }
 
 window.addEventListener('DOMContentLoaded', init());
@@ -69,23 +65,15 @@ function isLocalStorage() {
         currenciesApiData = JSON.parse(storage)
         currFullData = currenciesApiData
         renderStuff();
-        fullFillArrays()
-        grabLiElements()
+    
 
     } else {
         getData()
-        fullFillArrays()
-        grabLiElements()
+
     }
 }
 
 
-function grabLiElements() {
-    liArrayActiveFirst.liElMainList =  [...countryListMain[0].querySelectorAll('li')]
-    liArrayActiveFirst.liElRestList =  [...countryListRest[0].querySelectorAll('li')]
-    liArrayActiveSecond.liElMainList =  [...countryListMain[1].querySelectorAll('li')]
-    liArrayActiveSecond.liElRestList =  [...countryListRest[1].querySelectorAll('li')]
-}
 
 function getData() {
     fetch(
@@ -131,24 +119,7 @@ function filterMainCurrency() {
     })
 }
 
-function fullFillArrays(x = "all") {
-    if(x == "all") {
-        liArrayActiveFirst.main = new Array(mainCurrenciesApiData.length).fill(0)
-        liArrayActiveSecond.main = new Array(mainCurrenciesApiData.length).fill(0)
-        liArrayActiveFirst.rest = new Array(restCurrenciesApiData.length).fill(0)
-        liArrayActiveSecond.rest = new Array(restCurrenciesApiData.length).fill(0)
-    }
-    if(x == 0) {
-        liArrayActiveFirst.main = new Array(mainCurrenciesApiData.length).fill(0)
-        liArrayActiveFirst.rest = new Array(restCurrenciesApiData.length).fill(0)
-    }
-    
-    if(x == 1) {
-        liArrayActiveSecond.main = new Array(mainCurrenciesApiData.length).fill(0)
-        liArrayActiveSecond.rest = new Array(restCurrenciesApiData.length).fill(0)
-    }
 
-}
 
 function initListeners() {
     countryChooseBtn()
@@ -182,9 +153,9 @@ function countryChooseBtn()
                 cuntryChooseClickLi(li)
                 let whichArr = ul.classList.contains('countryList_main') ? 'main' : 'rest'  // która lista
                 let whichInput = lastIndex // który input
-                let liIndex = li.dataset.index
+                let liCode = li.dataset.code
                 //teraz zrobimy funkcje na umieszczenie tego gówna w tamtych tablicach.
-                setActiveToArray(whichInput, whichArr, liIndex)
+                setActiveToArray(whichInput, whichArr, liCode)
             }
 
             
@@ -211,56 +182,75 @@ function countryChooseBtn()
         })
 }
 
-function setActiveToArray(upDown, mainRest, liIndex) {
+function resetActiveClass(upDown) {
+    if(upDown == 0) {
+        liArrayActiveFirst.liElMainCode = ''
+        liArrayActiveFirst.liElRestCode = ''
+    }
+    if (upDown == 1) {
+        liArrayActiveSecond.liElMainCode = ''
+        liArrayActiveSecond.liElRestCode = ''
+    }
+}
 
-    // console.log(upDown);
+function setActiveToArray(upDown, mainRest, liCode) {
+
     let activeArrays = [liArrayActiveFirst,liArrayActiveSecond];
-    // let mainOrRest = mainRest = 'main' ? 'main' : 'rest'
     if(upDown == 0) {
         if(mainRest == 'main') {
-            activeArrays[upDown].main[liIndex] = 1
-            // console.log(activeArrays[upDown].main[liIndex]);
-            // activeArrays[upDown].liElMainList[liIndex].classList.add('active')
-            // console.log(activeArrays[upDown].liElMainList[liIndex]);
-            // // activeArrays[upDown].mainLiList = document.querySelectorAll('.countryList_main li')
-            // console.log(activeArrays[upDown].mainLiList);
+            activeArrays[upDown].liElMainCode = liCode
+            console.log(activeArrays[upDown].liElMainCode );
         }
 
         if(mainRest !== 'main') {
-            activeArrays[upDown].rest[liIndex] = 1
-            console.log(activeArrays[upDown].rest[liIndex]);
+            activeArrays[upDown].liElRestCode = liCode
+            console.log(activeArrays[upDown].liElRestCode );
         }
     } 
+
     if(upDown == 1) {
         if(mainRest == 'main') {
-            activeArrays[upDown].main[liIndex] = 1
-            console.log(activeArrays[upDown].main[liIndex]);
+            activeArrays[upDown].liElMainCode = liCode
+            console.log(activeArrays[upDown].liElMainCode );
         }
 
         if(mainRest !== 'main') {
-            activeArrays[upDown].rest[liIndex] = 1
-            console.log(activeArrays[upDown].rest[liIndex]);
+            activeArrays[upDown].liElRestCode = liCode
+            console.log(activeArrays[upDown].liElMainCode );
         }
     }
 }
 
 function renderActiveLiClass(upDownIndex) {
     let activeArrays = [liArrayActiveFirst,liArrayActiveSecond];
-    let mainLiAr = activeArrays[upDownIndex].main.findIndex(el => el == '1')
-    let restLiAr = activeArrays[upDownIndex].rest.findIndex(el => el == '1')
 
-    grabLiElements() 
-    
-    if(mainLiAr !== -1 || restLiAr !== -1) {
-       if(mainLiAr !== -1) {
-        activeArrays[upDownIndex].liElMainList[mainLiAr].classList.add('active')
-        fullFillArrays(upDownIndex)
-       }
-       if(restLiAr !== -1) {
-        activeArrays[upDownIndex].liElRestList[restLiAr].classList.add('active')
-        fullFillArrays(upDownIndex)
-       }
+    let mainLi = activeArrays[upDownIndex].liElMainCode
+    let restLi = activeArrays[upDownIndex].liElRestCode
+
+    if(mainLi !== '' || restLi !== '') {
+        if(mainLi !== '') {
+            console.log('main');
+        }
+
+        if(restLi !== '') {
+            console.log('rest');
+        }
     }
+
+    // let mainLiAr = activeArrays[upDownIndex].main.findIndex(el => el == '1')
+    // let restLiAr = activeArrays[upDownIndex].rest.findIndex(el => el == '1')
+
+    
+    // if(mainLiAr !== -1 || restLiAr !== -1) {
+    //    if(mainLiAr !== -1) {
+    //     activeArrays[upDownIndex].liElMainList[mainLiAr].classList.add('active')
+    //     fullFillArrays(upDownIndex)
+    //    }
+    //    if(restLiAr !== -1) {
+    //     activeArrays[upDownIndex].liElRestList[restLiAr].classList.add('active')
+    //     fullFillArrays(upDownIndex)
+    //    }
+    // }
 }
 
 function cuntryChooseClickLi(li) {
@@ -353,7 +343,7 @@ function renderMainCountryList(defaultArr = mainCurrenciesApiData) {
 
         defaultArr.forEach( (liElement, indexS) => {
             let liEl= `            
-            <li data-index="${indexS}">
+            <li data-index="${indexS}" data-code="${liElement.code}">
                 <img class="countryList__subtitles_img" src="${liElement.src}" alt="${liElement.country} flag">
 
                 <div class="countryList__countryName">
