@@ -182,16 +182,7 @@ function countryChooseBtn()
         })
 }
 
-function resetActiveClass(upDown) {
-    if(upDown == 0) {
-        liArrayActiveFirst.liElMainCode = ''
-        liArrayActiveFirst.liElRestCode = ''
-    }
-    if (upDown == 1) {
-        liArrayActiveSecond.liElMainCode = ''
-        liArrayActiveSecond.liElRestCode = ''
-    }
-}
+
 
 function setActiveToArray(upDown, mainRest, liCode) {
 
@@ -221,18 +212,62 @@ function setActiveToArray(upDown, mainRest, liCode) {
     }
 }
 
+function resetActiveClass(upDown) {
+    if(upDown == 0) {
+        liArrayActiveFirst.liElMainCode = ''
+        liArrayActiveFirst.liElRestCode = ''
+    }
+    if (upDown == 1) {
+        liArrayActiveSecond.liElMainCode = ''
+        liArrayActiveSecond.liElRestCode = ''
+    }
+}
+
+function addQuerySelectorsToLi(upDown, mainRest) {
+    let activeArrays = [liArrayActiveFirst,liArrayActiveSecond];
+
+    if(upDown == 0) {
+        if(mainRest == 'main') {
+            activeArrays[upDown].liQueryMain = [...document.querySelectorAll('.countryList_main li')]
+            console.log(activeArrays[upDown].liQueryMain);
+        }
+
+        if(mainRest == 'rest') {
+            activeArrays[upDown].liQueryRest = [...document.querySelectorAll('.countryList_rest li')]
+            console.log(activeArrays[upDown].liQueryRest);
+        }
+    }
+
+    if(upDown == 1) {
+        if(mainRest == 'main') {
+            activeArrays[upDown].liQueryMain = [...document.querySelectorAll('.countryList_main li')]
+            console.log(activeArrays[upDown].liQueryMain);
+        }
+
+        if(mainRest == 'rest') {
+            activeArrays[upDown].liQueryRest = [...document.querySelectorAll('.countryList_rest li')]-
+            console.log(activeArrays[upDown].liQueryRest);
+        }
+    }
+}
+
 function renderActiveLiClass(upDownIndex) {
     let activeArrays = [liArrayActiveFirst,liArrayActiveSecond];
 
     let mainLi = activeArrays[upDownIndex].liElMainCode
     let restLi = activeArrays[upDownIndex].liElRestCode
+    let activeClass
 
     if(mainLi !== '' || restLi !== '') {
         if(mainLi !== '') {
+            addQuerySelectorsToLi(upDownIndex, 'main')
             console.log('main');
+            // activeClass = activeArrays[upDownIndex].liQueryMain.filter(el => el.dataset.code == activeArrays[upDownIndex].liElMainCode)
+        //     console.log(activeClass);
         }
 
         if(restLi !== '') {
+            addQuerySelectorsToLi(upDownIndex, 'rest')
             console.log('rest');
         }
     }
@@ -365,7 +400,7 @@ function renderRestCountryList(defaultArr = restCurrenciesApiData) {
 
         defaultArr.forEach( (liElement, indexS) => {
             let liEl= `            
-            <li data-index="${indexS}">
+            <li data-index="${indexS}"  data-code="${liElement.code}">
                 <img class="countryList__subtitles_img" src="${liElement.src}" alt="${liElement.country} flag">
 
                 <div class="countryList__countryName">
