@@ -228,24 +228,24 @@ function addQuerySelectorsToLi(upDown, mainRest) {
 
     if(upDown == 0) {
         if(mainRest == 'main') {
-            activeArrays[upDown].liQueryMain = [...document.querySelectorAll('.countryList_main li')]
+            activeArrays[upDown].liQueryMain = [...document.querySelectorAll('.countryList_main')[0].querySelectorAll('li')]
             console.log(activeArrays[upDown].liQueryMain);
         }
 
         if(mainRest == 'rest') {
-            activeArrays[upDown].liQueryRest = [...document.querySelectorAll('.countryList_rest li')]
+            activeArrays[upDown].liQueryRest = [...document.querySelectorAll('.countryList_rest')[0].querySelectorAll('li')]
             console.log(activeArrays[upDown].liQueryRest);
         }
     }
 
     if(upDown == 1) {
         if(mainRest == 'main') {
-            activeArrays[upDown].liQueryMain = [...document.querySelectorAll('.countryList_main li')]
+            activeArrays[upDown].liQueryMain = [...document.querySelectorAll('.countryList_main')[1].querySelectorAll('li')]
             console.log(activeArrays[upDown].liQueryMain);
         }
 
         if(mainRest == 'rest') {
-            activeArrays[upDown].liQueryRest = [...document.querySelectorAll('.countryList_rest li')]-
+            activeArrays[upDown].liQueryRest = [...document.querySelectorAll('.countryList_rest')[1].querySelectorAll('li')]
             console.log(activeArrays[upDown].liQueryRest);
         }
     }
@@ -262,13 +262,17 @@ function renderActiveLiClass(upDownIndex) {
         if(mainLi !== '') {
             addQuerySelectorsToLi(upDownIndex, 'main')
             console.log('main');
-            // activeClass = activeArrays[upDownIndex].liQueryMain.filter(el => el.dataset.code == activeArrays[upDownIndex].liElMainCode)
-        //     console.log(activeClass);
+            activeClass = activeArrays[upDownIndex].liQueryMain.filter(el => el.dataset.code == activeArrays[upDownIndex].liElMainCode)
+            if(activeClass) activeClass[0].classList.add('active')
+            console.log(activeClass[0]);
         }
 
         if(restLi !== '') {
             addQuerySelectorsToLi(upDownIndex, 'rest')
             console.log('rest');
+            activeClass = activeArays[upDownIndex].liQueryRest.filter(el => el.dataset.code == activeArrays[upDownIndex].liElRestCode)
+            if(activeClass) activeClass.classList.add('active')
+            console.log(activeClass);
         }
     }
 
