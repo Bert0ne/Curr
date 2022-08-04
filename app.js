@@ -264,15 +264,17 @@ function renderActiveLiClass(upDownIndex) {
             console.log('main');
             activeClass = activeArrays[upDownIndex].liQueryMain.filter(el => el.dataset.code == activeArrays[upDownIndex].liElMainCode)
             if(activeClass) activeClass[0].classList.add('active')
+            resetActiveClass(upDownIndex)
             console.log(activeClass[0]);
         }
 
         if(restLi !== '') {
             addQuerySelectorsToLi(upDownIndex, 'rest')
             console.log('rest');
-            activeClass = activeArays[upDownIndex].liQueryRest.filter(el => el.dataset.code == activeArrays[upDownIndex].liElRestCode)
-            if(activeClass) activeClass.classList.add('active')
-            console.log(activeClass);
+            activeClass = activeArrays[upDownIndex].liQueryRest.filter(el => el.dataset.code == activeArrays[upDownIndex].liElRestCode)
+            if(activeClass) activeClass[0].classList.add('active')
+            resetActiveClass(upDownIndex)
+            console.log(activeClass[0]);
         }
     }
 
