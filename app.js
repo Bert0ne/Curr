@@ -21,12 +21,14 @@ let lastIndex = null;
 
 const dataFirstIndex = {
     liValue: 'USD',
+    liOldValue: '',
     index: 0,
     inputValue: 0
 }
 
 const dataSecondIndex = {
     liValue: 'PLN',
+    liOldValue: '',
     index: 1,
     inputValue: 5000
 }
@@ -131,6 +133,12 @@ function clearCurrencyInput() {
     renderCountryList()
 }
 
+function addOldValue() {
+    dataFirstIndex.liOldValue = dataFirstIndex.liValue;
+    dataSecondIndex.liOldValue = dataSecondIndex.liValue;
+    console.log(dataFirstIndex.liOldValue, dataSecondIndex.liOldValue);
+}
+
 
 function countryChooseBtn()
 {
@@ -150,6 +158,7 @@ function countryChooseBtn()
             }
 
             if(li) {
+                addOldValue()
                 cuntryChooseClickLi(li)
                 let whichArr = ul.classList.contains('countryList_main') ? 'main' : 'rest'  // która lista
                 let whichInput = lastIndex // który input
@@ -191,7 +200,7 @@ function setActiveToArray(upDown, mainRest, liCode) {
         if(mainRest == 'main') {
             activeArrays[upDown].liElMainCode = liCode
             console.log(activeArrays[upDown].liElMainCode );
-        }
+        }   
 
         if(mainRest !== 'main') {
             activeArrays[upDown].liElRestCode = liCode
@@ -261,20 +270,16 @@ function renderActiveLiClass(upDownIndex) {
     if(mainLi !== '' || restLi !== '') {
         if(mainLi !== '') {
             addQuerySelectorsToLi(upDownIndex, 'main')
-            console.log('main');
             activeClass = activeArrays[upDownIndex].liQueryMain.filter(el => el.dataset.code == activeArrays[upDownIndex].liElMainCode)
             if(activeClass) activeClass[0].classList.add('active')
             resetActiveClass(upDownIndex)
-            console.log(activeClass[0]);
         }
 
         if(restLi !== '') {
             addQuerySelectorsToLi(upDownIndex, 'rest')
-            console.log('rest');
             activeClass = activeArrays[upDownIndex].liQueryRest.filter(el => el.dataset.code == activeArrays[upDownIndex].liElRestCode)
             if(activeClass) activeClass[0].classList.add('active')
             resetActiveClass(upDownIndex)
-            console.log(activeClass[0]);
         }
     }
 
@@ -345,7 +350,14 @@ function renderInputCountry(indexNumb) {
 }
 
 function switchValues() {
-    console.log('swichValues');
+    switchCountryPart()
+    renderInputCountry(0)
+    renderInputCountry(1)
+}
+
+function switchCountryPart() {
+    dataFirstIndex.liValue = dataSecondIndex.liOldValue
+    dataSecondIndex.liValue = dataFirstIndex.liOldValue
 }
 
 function countryChooseClickIndex(index) {
