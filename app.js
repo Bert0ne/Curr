@@ -27,7 +27,7 @@ const dataFirstIndex = {
     liValue: 'USD',
     liOldValue: 'USD',
     index: 0,
-    inputValue: 0
+    inputValue: ''
 }
 
 const dataSecondIndex = {
@@ -164,7 +164,21 @@ function switchBtnListener() {
     switchBTN.addEventListener('click', () => {
         switchValues()
         addOldValue()
+        switchInputValues()
     })
+}
+
+function switchInputValues() {
+    let dataOne, dataTwo, valueOne, ValueTwo
+
+    dataOne = dataFirstIndex.inputValue
+    dataTwo = dataSecondIndex.inputValue
+
+    dataFirstIndex.inputValue = dataTwo
+    dataSecondIndex.inputValue = dataOne
+
+    inputTop.value = dataTwo
+    inputBottom.value = dataOne
 }
 
 function clearCurrencyInput() {
