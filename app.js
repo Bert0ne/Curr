@@ -17,18 +17,24 @@ const countryList = document.querySelectorAll('.countryList')
 const countryListMain = document.querySelectorAll('.countryList_main');
 const countryListRest = document.querySelectorAll('.countryList_rest');
 const inputRateSearch = document.querySelectorAll('.inputRateSearch');
+const switchBTN = document.querySelector('.reverse_button')
+const inputTop = document.querySelector('.input_top');
+const inputBottom = document.querySelector('.input_bottom');
+const inputsAll = document.querySelectorAll('.inputs')
+let inputTopValue = ''
+let inputBottomValue = '5000'
 let lastIndex = null;
 
 const dataFirstIndex = {
     liValue: 'USD',
-    liOldValue: '',
+    liOldValue: 'USD',
     index: 0,
     inputValue: 0
 }
 
 const dataSecondIndex = {
     liValue: 'PLN',
-    liOldValue: '',
+    liOldValue: 'PLN',
     index: 1,
     inputValue: 5000
 }
@@ -126,6 +132,42 @@ function filterMainCurrency() {
 function initListeners() {
     countryChooseBtn()
     countryInputFilter()
+    switchBtnListener()
+    // inputsValueListener(inputTop)
+    // inputsValueListener(inputBottom)
+    inputsValueListener()
+
+}
+
+function inputsValueListener() {
+    inputsAll.forEach(el => el.addEventListener('keyup', (e)=> {
+        console.log(e.target.id);
+        if(e.target.id === 'top_input') {
+            inputBottom.value = ''
+            inputBottomValue = ''
+
+            inputTopValue = e.target.value
+        }
+        if(e.target.id === 'bottom_input') {
+            inputTop.value = ''
+            inputTopValue = ''
+
+            inputBottomValue = e.target.value
+
+        }
+    } ))
+
+     
+    // input.addEventListener('keydown', (e)=> {
+    //     console.log(`${e.currentTarget.value}`);
+    // })
+}
+
+function switchBtnListener() {
+    switchBTN.addEventListener('click', () => {
+        switchValues()
+        addOldValue()
+    })
 }
 
 function clearCurrencyInput() {
