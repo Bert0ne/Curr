@@ -21,8 +21,6 @@ const switchBTN = document.querySelector('.reverse_button')
 const inputTop = document.querySelector('.input_top');
 const inputBottom = document.querySelector('.input_bottom');
 const inputsAll = document.querySelectorAll('.inputs')
-let inputTopValue = ''
-let inputBottomValue = '5000'
 let lastIndex = null;
 
 const dataFirstIndex = {
@@ -141,19 +139,18 @@ function initListeners() {
 
 function inputsValueListener() {
     inputsAll.forEach(el => el.addEventListener('keyup', (e)=> {
-        console.log(e.target.id);
+        // console.log(e.target.id);
         if(e.target.id === 'top_input') {
             inputBottom.value = ''
-            inputBottomValue = ''
+            dataSecondIndex.inputValue = ''
 
-            inputTopValue = e.target.value
+            dataFirstIndex.inputValue = e.target.value
         }
         if(e.target.id === 'bottom_input') {
             inputTop.value = ''
-            inputTopValue = ''
+            dataFirstIndex.inputValue = ''
 
-            inputBottomValue = e.target.value
-
+            dataSecondIndex.inputValue = e.target.value
         }
     } ))
 
