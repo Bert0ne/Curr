@@ -21,6 +21,7 @@ const switchBTN = document.querySelector('.reverse_button')
 const inputTop = document.querySelector('.input_top');
 const inputBottom = document.querySelector('.input_bottom');
 const inputsAll = document.querySelectorAll('.inputs')
+const calculateBtn = document.querySelector('.btn_check')
 let lastIndex = null;
 
 const dataFirstIndex = {
@@ -134,7 +135,13 @@ function initListeners() {
     // inputsValueListener(inputTop)
     // inputsValueListener(inputBottom)
     inputsValueListener()
+    calculateListener()
+}
 
+function calculateListener() {
+    calculateBtn.addEventListener('click', () => {
+        // góra czy doł = otrzymał czy zapłaci, waluty góra dół kurs waluty góra dół, kwota góra dół
+    })
 }
 
 function inputsValueListener() {
@@ -145,12 +152,15 @@ function inputsValueListener() {
             dataSecondIndex.inputValue = ''
 
             dataFirstIndex.inputValue = e.target.value
+            // getDisplayNumber(dataFirstIndex.inputValue)
         }
         if(e.target.id === 'bottom_input') {
             inputTop.value = ''
             dataFirstIndex.inputValue = ''
 
             dataSecondIndex.inputValue = e.target.value
+            // getDisplayNumber(dataSecondIndex.inputValue)
+
         }
     } ))
 
@@ -159,6 +169,27 @@ function inputsValueListener() {
     //     console.log(`${e.currentTarget.value}`);
     // })
 }
+
+
+// function getDisplayNumber(number) {
+//     const stringNumber = number.toString()
+//     const integerDigits = parseFloat(stringNumber.split('.')[0])
+//     console.log(stringNumber, integerDigits);
+//     const decimalDigits = stringNumber.split('.')[1]
+//     let integerDisplay
+//     if (isNaN(integerDigits)) {
+//       integerDisplay = ''
+//     } else {
+//       integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
+//     }
+//     if (decimalDigits != null) {
+//     //   return `${integerDisplay}.${decimalDigits}`
+//     console.log(integerDisplay, decimalDigits);
+//     } else {
+//     //   return integerDisplay
+//     console.log(integerDisplay);
+//     }
+//   }
 
 function switchBtnListener() {
     switchBTN.addEventListener('click', () => {
