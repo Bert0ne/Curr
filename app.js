@@ -141,10 +141,14 @@ function initListeners() {
 }
 
 function calculateListener() {
+
+
     calculateBtn.addEventListener('click', () => {
+        dataFirstIndex.mid = getCurrMid(dataFirstIndex.liValue)
+        dataSecondIndex.mid = getCurrMid(dataSecondIndex.liValue)
         // góra czy doł = otrzymał czy zapłaci, waluty góra dół kurs waluty góra dół, kwota góra dół
-        computeData(dataFirstIndex.inputValue, dataSecondIndex.inputValue, dataFirstIndex.liValue, dataSecondIndex.liValue)
-        console.log(currFullData);
+        computeData(dataFirstIndex.inputValue, dataSecondIndex.inputValue, 
+            dataFirstIndex.liValue, dataSecondIndex.liValue, dataFirstIndex.mid, dataSecondIndex.mid)
     })
 }
 
@@ -391,11 +395,11 @@ function cuntryChooseClickLi(li) {
 
     if(lastIndex == 0) {
         dataFirstIndex.liValue = curValue;
-        dataFirstIndex.mid = getCurrMid(curValue)
+        // dataFirstIndex.mid = getCurrMid(curValue)
         console.log(dataFirstIndex.mid);
     } else {
         dataSecondIndex.liValue = curValue;
-        dataSecondIndex.mid = getCurrMid(curValue)
+        // dataSecondIndex.mid = getCurrMid(curValue)
     }
     console.log(dataFirstIndex, dataSecondIndex);
     
