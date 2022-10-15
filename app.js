@@ -1,5 +1,5 @@
 import currCodeAndCountry from './currenciesCodeCountry.js'
-
+import computeData from './compute.js'
 
 let currenciesApiData = []; 
 let mainCurrenciesApiData = [];
@@ -28,14 +28,16 @@ const dataFirstIndex = {
     liValue: 'USD',
     liOldValue: 'USD',
     index: 0,
-    inputValue: ''
+    inputValue: '',
+    mid: 0
 }
 
 const dataSecondIndex = {
     liValue: 'PLN',
     liOldValue: 'PLN',
     index: 1,
-    inputValue: 5000
+    inputValue: 5000,
+    mid: 0
 }
 
 const liArrayActiveFirst = {
@@ -133,7 +135,7 @@ function initListeners() {
     countryInputFilter()
     switchBtnListener()
     // inputsValueListener(inputTop)
-    // inputsValueListener(inputBottom)
+    // inputsValue  Listener(inputBottom)
     inputsValueListener()
     calculateListener()
 }
@@ -141,6 +143,8 @@ function initListeners() {
 function calculateListener() {
     calculateBtn.addEventListener('click', () => {
         // góra czy doł = otrzymał czy zapłaci, waluty góra dół kurs waluty góra dół, kwota góra dół
+        computeData(dataFirstIndex.inputValue, dataSecondIndex.inputValue, dataFirstIndex.liValue, dataSecondIndex.liValue)
+        console.log(currFullData);
     })
 }
 
@@ -160,7 +164,6 @@ function inputsValueListener() {
 
             dataSecondIndex.inputValue = e.target.value
             // getDisplayNumber(dataSecondIndex.inputValue)
-
         }
     } ))
 
@@ -388,8 +391,11 @@ function cuntryChooseClickLi(li) {
 
     if(lastIndex == 0) {
         dataFirstIndex.liValue = curValue;
+        dataFirstIndex.mid = getCurrMid(curValue)
+        console.log(dataFirstIndex.mid);
     } else {
         dataSecondIndex.liValue = curValue;
+        dataSecondIndex.mid = getCurrMid(curValue)
     }
     console.log(dataFirstIndex, dataSecondIndex);
     
@@ -398,6 +404,12 @@ function cuntryChooseClickLi(li) {
     } else {
         switchValues()
     }
+}
+
+function getCurrMid(value) {
+    let curMid = currFullData.filter(el => el.code == value)[0].mid
+    return curMid
+    console.log(curMid);
 }
 
 function renderInputCountry(indexNumb) {
