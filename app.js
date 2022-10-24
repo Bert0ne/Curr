@@ -1,5 +1,5 @@
 import currCodeAndCountry from './currenciesCodeCountry.js'
-import computeData from './compute.js'
+// import computeData from './compute.js'
 
 let currenciesApiData = []; 
 let mainCurrenciesApiData = [];
@@ -23,6 +23,7 @@ const inputBottom = document.querySelector('.input_bottom');
 const inputsAll = document.querySelectorAll('.inputs')
 const calculateBtn = document.querySelector('.btn_check')
 let lastIndex = null;
+let calcResultsDiv = document.querySelector('.calc_results')
 
 const dataFirstIndex = {
     liValue: 'USD',
@@ -129,7 +130,6 @@ function filterMainCurrency() {
 }
 
 
-
 function initListeners() {
     countryChooseBtn()
     countryInputFilter()
@@ -201,8 +201,8 @@ function inputsValueListener() {
 function switchBtnListener() {
     switchBTN.addEventListener('click', () => {
         switchValues()
-        addOldValue()
         switchInputValues()
+        addOldValue()
     })
 }
 
@@ -456,8 +456,14 @@ function switchValues() {
 }
 
 function switchCountryPart() {
-    dataFirstIndex.liValue = dataSecondIndex.liOldValue
-    dataSecondIndex.liValue = dataFirstIndex.liOldValue
+    // dataFirstIndex.liValue = dataSecondIndex.liOldValue
+    // dataSecondIndex.liValue = dataFirstIndex.liOldValue
+
+    let databackFirst = dataFirstIndex.liValue
+    let databackSecond = dataSecondIndex.liValue
+
+    dataFirstIndex.liValue = dataSecondIndex.liValue
+    dataSecondIndex.liValue = databackFirst
 }
 
 function countryChooseClickIndex(index) {
@@ -564,3 +570,36 @@ function timerGetRates() {
 //     <span class="countryList__countryName--rateName">Amerykański Dolar</span>
 // </div>
 // </li>
+function computeData(upInputValue, downInputValue, upCountry, downCountry, upMid, downMid) {
+    console.log(upInputValue, downInputValue, upCountry, downCountry, upMid, downMid);
+
+    let resultCompute = undefined 
+    let resultSecondCurr = undefined
+    let isUpInput = upInputValue == '' ? false : true;
+
+    
+    if(upInputValue != '') {
+        resultCompute = upInputValue * downMid
+        resultSecondCurr = (1 / downMid).toFixed(4)
+        
+        console.log(resultCompute, +resultSecondCurr)
+    }
+
+    if(upInputValue == '') {
+        resultCompute = downInputValue * upMid
+        resultSecondCurr = (1 / upMid).toFixed(4)
+
+        console.log(resultCompute, +resultSecondCurr)
+    }
+
+    let renderedData = `
+    <div class="upperRate">1 EUR = 4,6481 PLN</div>
+    <div class="bottomRate">1 PLN = 0,2151 EUR</div>
+    <div class="rateforNumber"> Za 5000,00 PLN zapłacisz / otrzymasz 1075 EUR</div>
+    `
+
+    // let calcResultsDiv = ' '
+    // calcResultsDiv.insertAdjacentHTML('afterbegin', 'elo')
+    calcResultsDiv.innerHTML = renderedData
+
+}
