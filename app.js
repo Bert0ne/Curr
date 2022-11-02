@@ -200,9 +200,10 @@ function inputsValueListener() {
 
 function switchBtnListener() {
     switchBTN.addEventListener('click', () => {
+        addOldValue()
+
         switchValues()
         switchInputValues()
-        addOldValue()
     })
 }
 
@@ -456,14 +457,16 @@ function switchValues() {
 }
 
 function switchCountryPart() {
-    // dataFirstIndex.liValue = dataSecondIndex.liOldValue
-    // dataSecondIndex.liValue = dataFirstIndex.liOldValue
+    dataFirstIndex.liValue = dataSecondIndex.liOldValue
+    dataSecondIndex.liValue = dataFirstIndex.liOldValue
 
-    let databackFirst = dataFirstIndex.liValue
-    let databackSecond = dataSecondIndex.liValue
+    // let databackFirst = dataFirstIndex.liValue
+    // let databackSecond = dataSecondIndex.liValue
 
-    dataFirstIndex.liValue = dataSecondIndex.liValue
-    dataSecondIndex.liValue = databackFirst
+    // dataFirstIndex.liValue = databackSecond
+    // dataSecondIndex.liValue = databackFirst
+
+    // console.log(dataFirstIndex.liValue, dataSecondIndex.liValue);
 }
 
 function countryChooseClickIndex(index) {
@@ -579,27 +582,30 @@ function computeData(upInputValue, downInputValue, upCountry, downCountry, upMid
 
     
     if(upInputValue != '') {
-        resultCompute = upInputValue * downMid
-        resultSecondCurr = (1 / downMid).toFixed(4)
-        
+        resultCompute = (upInputValue * upMid / downMid).toFixed(4)
+        // resultSecondCurr = (1 / downMid).toFixed(4)
         console.log(resultCompute, +resultSecondCurr)
     }
 
     if(upInputValue == '') {
-        resultCompute = downInputValue * upMid
-        resultSecondCurr = (1 / upMid).toFixed(4)
+        resultCompute =(downInputValue * downMid / upMid).toFixed(4)
+        // resultSecondCurr = (1 / upMid).toFixed(4)
 
         console.log(resultCompute, +resultSecondCurr)
     }
 
-    let renderedData = `
-    <div class="upperRate">1 EUR = 4,6481 PLN</div>
-    <div class="bottomRate">1 PLN = 0,2151 EUR</div>
-    <div class="rateforNumber"> Za 5000,00 PLN zapłacisz / otrzymasz 1075 EUR</div>
+    let renderDataUp = `
+    <div class="upperRate">1 ${downCountry} = ${(downMid / upMid).toFixed(4)} ${upCountry}</div>
+    <div class="bottomRate"> 1 ${upCountry} = ${(upMid / downMid).toFixed(4)} ${downCountry}</div>
+    <div class="rateforNumber"> Za ${upInputValue} ${upCountry} otrzymasz ${resultCompute} ${downCountry}</div>
     `
-
+    let renderDataDown = `
+    <div class="upperRate">1 ${upCountry} = ${(upMid / downMid).toFixed(4)} ${downCountry}</div>
+    <div class="bottomRate"> 1 ${downCountry} = ${(downMid / upMid).toFixed(4)} ${upCountry}</div>
+    <div class="rateforNumber"> Za ${upInputValue} ${upCountry} zapłacisz ${resultCompute} ${downCountry}</div>
+    `
     // let calcResultsDiv = ' '
     // calcResultsDiv.insertAdjacentHTML('afterbegin', 'elo')
-    calcResultsDiv.innerHTML = renderedData
+    calcResultsDiv.innerHTML = isUpInput ? renderDataUp : renderDataDown;
 
 }
