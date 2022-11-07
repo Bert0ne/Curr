@@ -577,21 +577,21 @@ function computeData(upInputValue, downInputValue, upCountry, downCountry, upMid
     console.log(upInputValue, downInputValue, upCountry, downCountry, upMid, downMid);
 
     let resultCompute = undefined 
-    let resultSecondCurr = undefined
+    // let resultSecondCurr = undefined
     let isUpInput = upInputValue == '' ? false : true;
 
     
     if(upInputValue != '') {
-        resultCompute = (upInputValue * upMid / downMid).toFixed(4)
+        resultCompute = (upInputValue * upMid / downMid).toFixed(2)
         // resultSecondCurr = (1 / downMid).toFixed(4)
-        console.log(resultCompute, +resultSecondCurr)
+        console.log(resultCompute)
     }
 
     if(upInputValue == '') {
-        resultCompute =(downInputValue * downMid / upMid).toFixed(4)
+        resultCompute =(downInputValue * downMid / upMid).toFixed(2)
         // resultSecondCurr = (1 / upMid).toFixed(4)
 
-        console.log(resultCompute, +resultSecondCurr)
+        console.log(resultCompute )
     }
 
     let renderDataUp = `
@@ -602,7 +602,7 @@ function computeData(upInputValue, downInputValue, upCountry, downCountry, upMid
     let renderDataDown = `
     <div class="upperRate">1 ${upCountry} = ${(upMid / downMid).toFixed(4)} ${downCountry}</div>
     <div class="bottomRate"> 1 ${downCountry} = ${(downMid / upMid).toFixed(4)} ${upCountry}</div>
-    <div class="rateforNumber"> Za ${upInputValue} ${upCountry} zapłacisz ${resultCompute} ${downCountry}</div>
+    <div class="rateforNumber"> Za ${downInputValue} ${upCountry} zapłacisz ${resultCompute} ${downCountry}</div>
     `
     // let calcResultsDiv = ' '
     // calcResultsDiv.insertAdjacentHTML('afterbegin', 'elo')
