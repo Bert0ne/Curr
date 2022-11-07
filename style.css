@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 body {
@@ -69,6 +70,7 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    transition: all 1000ms linear;
 }
 
 .inputs_box {
@@ -304,6 +306,7 @@ input.inputs:focus {
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+
 }
 .upperRate, .bottomRate, .rateforNumber {
     margin-top: 15px;
@@ -312,6 +315,13 @@ input.inputs:focus {
     margin-bottom: 15px;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
 
 
 /*     BOTTOM RATES    */

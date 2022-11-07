@@ -154,7 +154,9 @@ function calculateListener() {
 
 function inputsValueListener() {
     inputsAll.forEach(el => el.addEventListener('keyup', (e)=> {
-        // console.log(e.target.id);
+    
+        calcResultsDiv.innerHTML = ''
+
         if(e.target.id === 'top_input') {
             inputBottom.value = ''
             dataSecondIndex.inputValue = ''
