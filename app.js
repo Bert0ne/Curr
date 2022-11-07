@@ -61,7 +61,6 @@ function renderStuff() {
     filterMainCurrency()
     renderBottomRates()
     renderCountryList()
-
     timerGetRates()
     initListeners()
 }
@@ -97,7 +96,6 @@ function getData() {
 
             localStorage.setItem(LOCAL_STORAGE_DATA, JSON.stringify(currFullData))
             localStorage.setItem(LOCAL_STORAGE_HOUR, JSON.stringify(hour))
-
             renderStuff()
     });
 }
@@ -134,8 +132,7 @@ function initListeners() {
     countryChooseBtn()
     countryInputFilter()
     switchBtnListener()
-    // inputsValueListener(inputTop)
-    // inputsValue  Listener(inputBottom)
+
     inputsValueListener()
     calculateListener()
 }
@@ -162,43 +159,16 @@ function inputsValueListener() {
             dataSecondIndex.inputValue = ''
 
             dataFirstIndex.inputValue = e.target.value
-            // getDisplayNumber(dataFirstIndex.inputValue)
         }
         if(e.target.id === 'bottom_input') {
             inputTop.value = ''
             dataFirstIndex.inputValue = ''
 
             dataSecondIndex.inputValue = e.target.value
-            // getDisplayNumber(dataSecondIndex.inputValue)
         }
     } ))
-
-     
-    // input.addEventListener('keydown', (e)=> {
-    //     console.log(`${e.currentTarget.value}`);
-    // })
 }
 
-
-// function getDisplayNumber(number) {
-//     const stringNumber = number.toString()
-//     const integerDigits = parseFloat(stringNumber.split('.')[0])
-//     console.log(stringNumber, integerDigits);
-//     const decimalDigits = stringNumber.split('.')[1]
-//     let integerDisplay
-//     if (isNaN(integerDigits)) {
-//       integerDisplay = ''
-//     } else {
-//       integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
-//     }
-//     if (decimalDigits != null) {
-//     //   return `${integerDisplay}.${decimalDigits}`
-//     console.log(integerDisplay, decimalDigits);
-//     } else {
-//     //   return integerDisplay
-//     console.log(integerDisplay);
-//     }
-//   }
 
 function switchBtnListener() {
     switchBTN.addEventListener('click', () => {
@@ -230,7 +200,6 @@ function clearCurrencyInput() {
 function addOldValue() {
     dataFirstIndex.liOldValue = dataFirstIndex.liValue;
     dataSecondIndex.liOldValue = dataSecondIndex.liValue;
-    console.log(dataFirstIndex.liOldValue, dataSecondIndex.liOldValue);
 }
 
 
@@ -257,10 +226,8 @@ function countryChooseBtn()
                 let whichArr = ul.classList.contains('countryList_main') ? 'main' : 'rest'  // która lista
                 let whichInput = lastIndex // który input
                 let liCode = li.dataset.code
-                //teraz zrobimy funkcje na umieszczenie tego gówna w tamtych tablicach.
                 setActiveToArray(whichInput, whichArr, liCode)
             }
-
             
             if(divTarget) {
                 let indexTarget = divTarget.dataset.index
@@ -285,32 +252,26 @@ function countryChooseBtn()
         })
 }
 
-
-
 function setActiveToArray(upDown, mainRest, liCode) {
 
     let activeArrays = [liArrayActiveFirst,liArrayActiveSecond];
     if(upDown == 0) {
         if(mainRest == 'main') {
             activeArrays[upDown].liElMainCode = liCode
-            console.log(activeArrays[upDown].liElMainCode );
         }   
 
         if(mainRest !== 'main') {
             activeArrays[upDown].liElRestCode = liCode
-            console.log(activeArrays[upDown].liElRestCode );
         }
     } 
 
     if(upDown == 1) {
         if(mainRest == 'main') {
             activeArrays[upDown].liElMainCode = liCode
-            console.log(activeArrays[upDown].liElMainCode );
         }
 
         if(mainRest !== 'main') {
             activeArrays[upDown].liElRestCode = liCode
-            console.log(activeArrays[upDown].liElMainCode );
         }
     }
 }
@@ -332,24 +293,20 @@ function addQuerySelectorsToLi(upDown, mainRest) {
     if(upDown == 0) {
         if(mainRest == 'main') {
             activeArrays[upDown].liQueryMain = [...document.querySelectorAll('.countryList_main')[0].querySelectorAll('li')]
-            console.log(activeArrays[upDown].liQueryMain);
         }
 
         if(mainRest == 'rest') {
             activeArrays[upDown].liQueryRest = [...document.querySelectorAll('.countryList_rest')[0].querySelectorAll('li')]
-            console.log(activeArrays[upDown].liQueryRest);
         }
     }
 
     if(upDown == 1) {
         if(mainRest == 'main') {
             activeArrays[upDown].liQueryMain = [...document.querySelectorAll('.countryList_main')[1].querySelectorAll('li')]
-            console.log(activeArrays[upDown].liQueryMain);
         }
 
         if(mainRest == 'rest') {
             activeArrays[upDown].liQueryRest = [...document.querySelectorAll('.countryList_rest')[1].querySelectorAll('li')]
-            console.log(activeArrays[upDown].liQueryRest);
         }
     }
 }
@@ -376,21 +333,6 @@ function renderActiveLiClass(upDownIndex) {
             resetActiveClass(upDownIndex)
         }
     }
-
-    // let mainLiAr = activeArrays[upDownIndex].main.findIndex(el => el == '1')
-    // let restLiAr = activeArrays[upDownIndex].rest.findIndex(el => el == '1')
-
-    
-    // if(mainLiAr !== -1 || restLiAr !== -1) {
-    //    if(mainLiAr !== -1) {
-    //     activeArrays[upDownIndex].liElMainList[mainLiAr].classList.add('active')
-    //     fullFillArrays(upDownIndex)
-    //    }
-    //    if(restLiAr !== -1) {
-    //     activeArrays[upDownIndex].liElRestList[restLiAr].classList.add('active')
-    //     fullFillArrays(upDownIndex)
-    //    }
-    // }
 }
 
 function cuntryChooseClickLi(li) {
@@ -398,14 +340,11 @@ function cuntryChooseClickLi(li) {
 
     if(lastIndex == 0) {
         dataFirstIndex.liValue = curValue;
-        // dataFirstIndex.mid = getCurrMid(curValue)
-        console.log(dataFirstIndex.mid);
+
     } else {
         dataSecondIndex.liValue = curValue;
-        // dataSecondIndex.mid = getCurrMid(curValue)
     }
-    console.log(dataFirstIndex, dataSecondIndex);
-    
+
     if(dataFirstIndex.liValue !== dataSecondIndex.liValue) {
         renderInputCountry(lastIndex)
     } else {
@@ -416,24 +355,9 @@ function cuntryChooseClickLi(li) {
 function getCurrMid(value) {
     let curMid = currFullData.filter(el => el.code == value)[0].mid
     return curMid
-    console.log(curMid);
 }
 
 function renderInputCountry(indexNumb) {
-    // let dataIndexAll = [dataFirstIndex, dataSecondIndex]
-
-    // dataIndexAll.forEach( (el, index) => {
-    //     let renderData = `
-    //         <div class="country_choose--flag">
-    //             <img class="inputIMG topIMG" src="https://countryflagsapi.com/png/${el.liValue.toLocaleLowerCase()}" alt="${el.liValue} flag">
-    //             <h3 class="top">${el.liValue.toUpperCase()}</h3>
-    //         </div>
-    //         <i class="fa-solid fa-chevron-down"></i>
-
-    //     `
-
-    //     countryChoose[index].innerHTML = renderData;
-    // })
 
     let dataIndexAll = [dataFirstIndex, dataSecondIndex]
     let code = dataIndexAll[indexNumb].liValue
@@ -461,18 +385,9 @@ function switchValues() {
 function switchCountryPart() {
     dataFirstIndex.liValue = dataSecondIndex.liOldValue
     dataSecondIndex.liValue = dataFirstIndex.liOldValue
-
-    // let databackFirst = dataFirstIndex.liValue
-    // let databackSecond = dataSecondIndex.liValue
-
-    // dataFirstIndex.liValue = databackSecond
-    // dataSecondIndex.liValue = databackFirst
-
-    // console.log(dataFirstIndex.liValue, dataSecondIndex.liValue);
 }
 
 function countryChooseClickIndex(index) {
-    // index == 0 ? dataFirstIndex.index = index : dataSecondIndex.index = index
     lastIndex = index
 }
 
@@ -488,8 +403,6 @@ function countryInputFilter() {
             let renderedRestArray = restCurrenciesApiData.filter( e => {
                 return e.currency.includes(letter)
             })
-
-
             renderMainCountryList(renderedMainArray)
             renderRestCountryList(renderedRestArray)
         })
@@ -565,35 +478,16 @@ function timerGetRates() {
     }, 3600000);
 }
 
-
-// <li>
-// <img class="countryList__subtitles_img" src="https://countryflagsapi.com/png/usa" alt="Europe flag">
-
-// <div class="countryList__countryName">
-//     <span class="countryList__countryName--shortName">USD</span>
-
-//     <span class="countryList__countryName--rateName">Amerykański Dolar</span>
-// </div>
-// </li>
 function computeData(upInputValue, downInputValue, upCountry, downCountry, upMid, downMid) {
-    console.log(upInputValue, downInputValue, upCountry, downCountry, upMid, downMid);
-
     let resultCompute = undefined 
-    // let resultSecondCurr = undefined
     let isUpInput = upInputValue == '' ? false : true;
-
     
     if(upInputValue != '') {
         resultCompute = (upInputValue * upMid / downMid).toFixed(2)
-        // resultSecondCurr = (1 / downMid).toFixed(4)
-        console.log(resultCompute)
     }
 
     if(upInputValue == '') {
         resultCompute =(downInputValue * downMid / upMid).toFixed(2)
-        // resultSecondCurr = (1 / upMid).toFixed(4)
-
-        console.log(resultCompute )
     }
 
     let renderDataUp = `
@@ -606,8 +500,5 @@ function computeData(upInputValue, downInputValue, upCountry, downCountry, upMid
     <div class="bottomRate"> 1 ${downCountry} = ${(downMid / upMid).toFixed(4)} ${upCountry}</div>
     <div class="rateforNumber"> Za ${downInputValue} ${upCountry} zapłacisz ${resultCompute} ${downCountry}</div>
     `
-    // let calcResultsDiv = ' '
-    // calcResultsDiv.insertAdjacentHTML('afterbegin', 'elo')
     calcResultsDiv.innerHTML = isUpInput ? renderDataUp : renderDataDown;
-
 }
